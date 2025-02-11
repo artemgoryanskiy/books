@@ -27,6 +27,7 @@
     "webpack-dev-server": "^5.2.0"
   },
   "dependencies": {
+    "cssnano": "^7.0.6",
     "on-change": "^5.0.1"
   }
 }
