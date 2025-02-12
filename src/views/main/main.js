@@ -2,11 +2,12 @@ import { AbstractView } from "../../common/view.js";
 import onChange from "on-change";
 import { Header } from "../../components/header/header.js";
 import { Search } from "../../components/search/search.js";
-import { Cardlist } from "../../components/cardlist/cardlist.js";
+import { CardList } from "../../components/cardlist/cardlist.js";
 
 export class MainView extends AbstractView {
   state = {
     list: [],
+    numFound: 0,
     loading: false,
     searchQuery: undefined,
     offset: 0,
@@ -34,6 +35,8 @@ export class MainView extends AbstractView {
         this.state.offset,
       );
       this.state.loading = false;
+      console.log(data);
+      this.state.numFound = data.numFound;
       this.state.list = data.docs;
     }
 
@@ -52,11 +55,12 @@ export class MainView extends AbstractView {
   render() {
     const el = document.createElement("div");
     el.append(new Search(this.state).render());
-    el.append(new Cardlist(this.appState, this.state).render());
+    el.append(new CardList(this.appState, this.state).render());
     this.app.innerHTML = "";
     this.app.append(el);
     this.renderHeader();
   }
+
   renderHeader() {
     const header = new Header(this.appState).render();
     this.app.prepend(header);
