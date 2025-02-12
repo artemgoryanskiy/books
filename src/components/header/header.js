@@ -10,7 +10,6 @@ export class Header extends DivComponent {
         this.appState = appState;
     }
     render() {
-       this.el.innerHTML = ''
         this.el.classList.add(`${styles.header}`);
         this.el.innerHTML = `
             <div>
